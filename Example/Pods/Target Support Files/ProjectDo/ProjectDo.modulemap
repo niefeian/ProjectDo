@@ -1,0 +1,6 @@
+framework module ProjectDo {
+  umbrella header "ProjectDo-umbrella.h"
+
+  export *
+  module * { export * }
+}

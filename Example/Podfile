@@ -1,5 +1,5 @@
 use_frameworks!
-
+source 'https://github.com/CocoaPods/Specs.git'
 target 'ProjectDo_Example' do
   pod 'ProjectDo', :path => '../'
 
@@ -10,5 +10,12 @@ target 'ProjectDo_Example' do
     pod 'Nimble', '~> 7.0'
     pod 'FBSnapshotTestCase' , '~> 2.1.4'
     pod 'Nimble-Snapshots' , '~> 6.3.0'
+    
+    pod 'AutoData' , :path=>'../../AutoData'
+    pod 'NFASubprojects' , :path=>'../../NFASubprojects'
+    pod 'SwiftProjects' , :path=>'../../SwiftProjects'
+    pod 'STRIAPManagerUtils' , :path=>'../../STRIAPManagerUtils'
+    pod 'ProThirdpart' , :path=>'../../ProThirdpart'
+#    pod 'WechatOpenSDK'  , '~> 1.8.6'
   end
 end

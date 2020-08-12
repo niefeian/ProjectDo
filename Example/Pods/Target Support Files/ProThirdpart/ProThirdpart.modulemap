@@ -1,0 +1,6 @@
+framework module ProThirdpart {
+  umbrella header "ProThirdpart-umbrella.h"
+
+  export *
+  module * { export * }
+}
