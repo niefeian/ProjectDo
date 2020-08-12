@@ -33,6 +33,10 @@ open class UserDefaultsUtils {
         }
     }
     
+    open class func getGroup(_ group : String) ->  NSDictionary?{
+        return UserDefaults.standard.value(forKey: group) as? NSDictionary
+    }
+    
     /*
      计数器
      */

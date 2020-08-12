@@ -10,5 +10,5 @@ import UIKit
 open class ResidentManager  {
     
     public static weak var curViewController : UIViewController!
-
+    public static weak var curPopViewController : BasePopVC!
 }

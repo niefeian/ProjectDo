@@ -8,10 +8,10 @@
 import UIKit
 import NFAToolkit
 
-class CustImageView: UIImageView {
+open class CustImageView: UIImageView {
 
-    var block : CB?
-    var tapGestureRecognizer : UITapGestureRecognizer!
+   private var block : CB?
+   private var tapGestureRecognizer : UITapGestureRecognizer!
 
     open func addClickEvents(_ callback : @escaping CB){
         if tapGestureRecognizer == nil {

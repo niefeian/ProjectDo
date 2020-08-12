@@ -48,7 +48,7 @@ open class PopupController: UIViewController {
     }
     
     public enum PopupAnimation {
-        case fadeIn, slideUp , none
+        case fadeIn, slideUp , none , left , right
     }
     
     public enum PopupBackgroundStyle {
@@ -124,14 +124,22 @@ open class PopupController: UIViewController {
 // MARK: - Publics
 public extension PopupController {
     
+
+    
     // MARK: Classes
-    class func create(_ parentViewController: UIViewController) -> PopupController {
+    class func create(_ parentViewController: UIViewController?) -> PopupController? {
+        if parentViewController == nil {
+            return nil
+        }
         let controller = PopupController()
         controller.defaultConfigure()
-        
-        parentViewController.addChild(controller)
-        parentViewController.view.addSubview(controller.view)
-        controller.didMove(toParent: parentViewController)
+        parentViewController?.addChild(controller)
+        parentViewController?.view.addSubview(controller.view)
+        controller.didMove(toParent: parentViewController!)
+        if controller.view == nil
+        {
+            return nil
+        }
         AppWindow().addSubview(controller.view)
         return controller
     }
@@ -142,6 +150,7 @@ public extension PopupController {
     }
     
     func show(_ childViewController: UIViewController){
+        ResidentManager.curPopViewController = childViewController as? BasePopVC
         self.addChild(childViewController)
         popupView = childViewController.view
         configure()
@@ -149,6 +158,11 @@ public extension PopupController {
         show(layout, animation: animation) {
             self.defaultContentOffset = self.baseScrollView.contentOffset
             self.showedHandler?(self)
+        }
+        if let popView = childViewController as? BasePopVC{
+            popView.disappear = {[weak self] in
+                self?.dismiss()
+            }
         }
     }
     
@@ -237,11 +251,15 @@ private extension PopupController {
     
     func updateLayouts() {
         guard let child = self.children.last as? PopupContentViewController else { return }
-        popupView.frame.size = child.sizeForPopup(self, size: maximumSize, showingKeyboard: isShowingKeyboard)
-        popupView.frame.origin.x = layout.origin(popupView).x
-        baseScrollView.frame = view.frame
-        baseScrollView.contentInset.top = layout.origin(popupView).y
-        defaultContentOffset.y = -baseScrollView.contentInset.top
+        if popupView != nil
+        {
+            popupView.frame.size = child.sizeForPopup(self, size: maximumSize, showingKeyboard: isShowingKeyboard)
+            popupView.frame.origin.x = layout.origin(popupView).x
+            baseScrollView.frame = view.frame
+            baseScrollView.contentInset.top = layout.origin(popupView).y
+            defaultContentOffset.y = -baseScrollView.contentInset.top
+        }
+       
     }
     
     func updateBackgroundStyle(_ style: PopupBackgroundStyle) {
@@ -322,6 +340,14 @@ private extension PopupController {
             none(layout, completion: { () -> Void in
                 completion()
             })
+        case .left:
+            left(layout, completion: { () -> Void in
+                completion()
+            })
+        case .right:
+            right(layout, completion: { () -> Void in
+                completion()
+            })
         }
     }
     
@@ -346,6 +372,16 @@ private extension PopupController {
             })
         case .none:
             noneOut({ () -> Void in
+                self.clean()
+                completion()
+            })
+        case .left:
+            leftOut({ () -> Void in
+                self.clean()
+                completion()
+            })
+        case .right:
+            rightOut({ () -> Void in
                 self.clean()
                 completion()
             })
@@ -424,6 +460,40 @@ private extension PopupController {
         })
     }
     
+    func right(_ layout: PopupLayout, completion: @escaping () -> Void) {
+        view.isHidden = false
+        baseScrollView.backgroundColor = UIColor.clear
+        baseScrollView.contentInset.left = layout.origin(popupView).x
+        baseScrollView.contentOffset.x = -UIScreen.main.bounds.width
+        
+        UIView.animate(
+            withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .curveLinear, animations: { () -> Void in
+                
+                self.updateBackgroundStyle(self.backgroundStyle)
+                self.baseScrollView.contentOffset.x = -layout.origin(self.popupView).x
+                self.defaultContentOffset = self.baseScrollView.contentOffset
+        }, completion: { (isFinished) -> Void in
+            completion()
+        })
+    }
+    
+    func left(_ layout: PopupLayout, completion: @escaping () -> Void) {
+        view.isHidden = false
+        baseScrollView.backgroundColor = UIColor.clear
+        baseScrollView.contentInset.left = -layout.origin(popupView).x
+        baseScrollView.contentOffset.x = UIScreen.main.bounds.width
+        
+        UIView.animate(
+            withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .curveLinear, animations: { () -> Void in
+                
+                self.updateBackgroundStyle(self.backgroundStyle)
+                self.baseScrollView.contentOffset.x = layout.origin(self.popupView).x
+                self.defaultContentOffset = self.baseScrollView.contentOffset
+        }, completion: { (isFinished) -> Void in
+            completion()
+        })
+    }
+    
     func none(_ layout: PopupLayout, completion: @escaping () -> Void) {
            view.isHidden = false
            baseScrollView.backgroundColor = UIColor.clear
@@ -462,6 +532,24 @@ private extension PopupController {
         self.popupView.frame.origin.y = UIScreen.main.bounds.height
         self.baseScrollView.alpha = 0.0
         completion()
+    }
+    
+    func leftOut(_ completion: @escaping () -> Void) {
+             UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .curveLinear, animations: { () -> Void in
+            self.popupView.frame.origin.x = -UIScreen.main.bounds.width
+            self.baseScrollView.alpha = 0.0
+        }, completion: { (isFinished) -> Void in
+            completion()
+        })
+    }
+    
+    func rightOut(_ completion: @escaping () -> Void) {
+             UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .curveLinear, animations: { () -> Void in
+            self.popupView.frame.origin.x = UIScreen.main.bounds.width
+            self.baseScrollView.alpha = 0.0
+        }, completion: { (isFinished) -> Void in
+            completion()
+        })
     }
 }
 

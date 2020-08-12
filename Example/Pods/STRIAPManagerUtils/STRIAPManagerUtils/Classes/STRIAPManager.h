@@ -27,13 +27,15 @@ typedef void (^IAPCompletionHandle)(SIAPPurchType type , NSData *data , id para 
 
 typedef void (^IAPSubscribeHandle)(NSMutableArray *data);
 typedef void (^IAPErrorderHandle)(NSString *tmpid);
+typedef void (^IAPLog)(NSString *log);
+typedef void (^IAPData)(NSData *data);
 
 /*
  transactionIdentifier 流水号
  desc 报错描述
  info 报错信息
  */
-typedef void (^IAPLogHandle)(NSString *transactionIdentifier ,NSString * desc , NSError *error , NSString *applicationUsername);
+typedef void (^IAPLogHandle)(NSString *transactionIdentifier ,NSString * desc , NSError *error , NSString *applicationUsername , NSString *purchID);
 
 
 @interface STRIAPManager : NSObject
@@ -43,15 +45,22 @@ typedef void (^IAPLogHandle)(NSString *transactionIdentifier ,NSString * desc , 
  */
 @property(nonatomic,strong) NSString* subscribeId;
 
+@property(nonatomic,assign) NSInteger version;//如果是0 的话所有代码都会走 1 的话会少走 一点代码，比如错误返回，跟一些通知
+
 @property(nonatomic,assign) BOOL beginTimer;//开启定时器 ，默认是YES ，关闭定时器，可能会出现丢单问题
 
-//是否自动尝试恢复订单默认yes 自动续订 需要设置为false
+//是否自动尝试恢复订单默认yes 自动续订 需要设置为false 因为自动续订会一直恢复回来，并且数据特别多
 - (void)autoRestoreCompletedTransactions:(BOOL)autoRestores;
+
+//恢复某种商品的订单  purchID 为商品id handle 为恢复后的数据 sdk 先简单处理，获得恢复后数据直接返回 后续再过滤
+- (void)restoreCompletedTransactions:(NSString *)purchID handle:(IAPData)handle;
 
 - (void)setErrorderHandle:(IAPErrorderHandle)handle;
 
+- (void)finishTransactionByPurchID:(NSString *)purchID;
 
--(void)finishTransactionByPurchID:(NSString *)purchID;
+
+
 /*
     单利
  */
@@ -69,6 +78,10 @@ typedef void (^IAPLogHandle)(NSString *transactionIdentifier ,NSString * desc , 
     para -> 订单参数
  */
 - (void)startPurchWithID:(NSString *)purchID para:(id)para tmpid:(NSString *)tmpid  info:(id)info;
+
+
+- (void)beginPurchWithID:(NSString *)purchID applicationUsername:(NSString*)applicationUsername;
+
 
 //完结掉所有旧的订单 谨慎使用
 - (void)finishAllTransaction;
@@ -90,6 +103,8 @@ typedef void (^IAPLogHandle)(NSString *transactionIdentifier ,NSString * desc , 
 #pragma mark - 以下涉及到自动续订会员恢复
 - (void)restoreCompletedTransactionsPara:(id)para ;
 
+//试验结果，发现依旧会全部回来，弃用
+- (void)restoreCompletedapplicationUsername:(NSString *)applicationUsername ;
 
 //自动续订的恢复购买走这边的流程
 - (void)verifySubscribe:(IAPSubscribeHandle)handle;
@@ -104,7 +119,13 @@ typedef void (^IAPLogHandle)(NSString *transactionIdentifier ,NSString * desc , 
 - (void)testTransactionData:(NSData *)receipt index:(NSInteger)index;
 
 #pragma mark -  订单校验 添加log 回调 更新支付状态
+//内购报错回调
 - (void)binLog:(IAPLogHandle)log;
+
+//内购流程回调
+- (void)binAppLog:(IAPLog)appLog;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

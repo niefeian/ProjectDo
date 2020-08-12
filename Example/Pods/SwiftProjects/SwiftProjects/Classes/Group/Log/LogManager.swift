@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import NFAFile
+//import NFAFile
 import NFAToolkit
 
 
@@ -28,21 +28,21 @@ open class LogManager: NSObject {
     }
     
     private func uploadLog(){
-        if let logsPath = FileUtil.getPath(.log, isDir: true) {
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: logsPath +  "error.log")) {
-                let logs = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
-                 // 1. 上传日志到服务器
-                 if logs != nil {
-                    delegate?.sendHttpLog(logs as String? ?? "", type: "client")
-                 }
-                 // 2. 删除日志
-                 let fileMan = FileManager.default
-                 do {
-                     try fileMan.removeItem(atPath: logsPath)
-                 } catch  {
-                 }
-            }
-        }
+//        if let logsPath = FileUtil.getPath(.log, isDir: true) {
+//            if let data = try? Data(contentsOf: URL(fileURLWithPath: logsPath +  "error.log")) {
+//                let logs = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+//                 // 1. 上传日志到服务器
+//                 if logs != nil {
+//                    delegate?.sendHttpLog(logs as String? ?? "", type: "client")
+//                 }
+//                 // 2. 删除日志
+//                 let fileMan = FileManager.default
+//                 do {
+//                     try fileMan.removeItem(atPath: logsPath)
+//                 } catch  {
+//                 }
+//            }
+//        }
     }
     
     // 写日志
@@ -61,15 +61,15 @@ open class LogManager: NSObject {
         params["stack"] =  e.callStackSymbols
         params["curViewController"] =  "\(String(describing: ResidentManager.curViewController))"
         
-        if let  error = params.dicValueString() {
-            if let logsPath = FileUtil.getPath(.log, isDir: true) {
-                let logPath = logsPath + "error.log"
-                do {
-                    try error.write(to: URL(fileURLWithPath: logPath), atomically: true, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-                 } catch  {
-     
-                 }
-            }
-        }
+//        if let  error = params.dicValueString() {
+//            if let logsPath = FileUtil.getPath(.log, isDir: true) {
+//                let logPath = logsPath + "error.log"
+//                do {
+//                    try error.write(to: URL(fileURLWithPath: logPath), atomically: true, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+//                 } catch  {
+//     
+//                 }
+//            }
+//        }
     }
 }

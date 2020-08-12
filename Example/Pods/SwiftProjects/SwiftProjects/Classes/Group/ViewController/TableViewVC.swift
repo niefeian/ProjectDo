@@ -33,7 +33,7 @@ open class TableViewVC: BaseProVC {
     
     
    open func registerCell(_ xibName : String , identifier : String){
-//        tableView.register(UINib(nibName: "SwiftProjects.bundle/\(xibName)", bundle: nil), forCellReuseIdentifier: "cell")
+
        
     }
 

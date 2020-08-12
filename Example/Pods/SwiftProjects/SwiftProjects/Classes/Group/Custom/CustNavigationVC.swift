@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+public var appStatusBarStyle : UIStatusBarStyle = .lightContent
 
 open class CustNavigationVC: UINavigationController {
     
@@ -17,7 +18,7 @@ open class CustNavigationVC: UINavigationController {
     }
     
     override open var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
+        return appStatusBarStyle
     }
     
     override open func viewWillAppear(_ animated: Bool) {

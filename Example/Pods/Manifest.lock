@@ -1,39 +1,39 @@
 PODS:
-  - AutoData (0.1.3):
+  - AutoData (0.1.4):
     - AutoModel
     - NFANetwork
     - NFASQLiteDB
     - NFAToolkit
-  - AutoModel (0.1.1)
+  - AutoModel (0.1.4)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - MBProgressHUD (1.2.0)
-  - NFAFile (0.0.6)
-  - NFANetwork (0.0.7)
-  - NFASQLiteDB (0.0.1)
+  - NFAFile (0.1.1)
+  - NFANetwork (0.0.8)
+  - NFASQLiteDB (0.0.2)
   - NFASubprojects (0.0.1):
     - NFATipsUI
     - ProThirdpart
     - SnapKit
     - SwiftProjects
-  - NFATipsUI (0.0.9):
+  - NFATipsUI (0.1.1):
     - NFAToolkit
-  - NFAToolkit (0.0.17)
+  - NFAToolkit (0.1.1)
   - Nimble (7.3.4)
   - Nimble-Snapshots (6.3.0):
     - Nimble-Snapshots/Core (= 6.3.0)
   - Nimble-Snapshots/Core (6.3.0):
     - FBSnapshotTestCase (~> 2.0)
     - Nimble (~> 7.0)
-  - ProjectDo (0.1.0):
+  - ProjectDo (0.1.1):
     - AutoData
     - NFASubprojects
     - ProThirdpart
     - STRIAPManagerUtils
-  - ProThirdpart (0.1.0):
+  - ProThirdpart (0.1.1):
     - MBProgressHUD
     - SDWebImage (~> 5.5.2)
     - SnapKit (~> 4.2.0)
@@ -42,75 +42,70 @@ PODS:
     - SDWebImage/Core (= 5.5.2)
   - SDWebImage/Core (5.5.2)
   - SnapKit (4.2.0)
-  - STRIAPManagerUtils (0.2.4)
-  - SwiftProjects (0.0.20):
+  - STRIAPManagerUtils (0.2.7)
+  - SwiftProjects (0.0.21):
     - NFAFile
     - NFATipsUI
     - NFAToolkit
 
 DEPENDENCIES:
-  - AutoData (from `../../AutoData`)
+  - AutoData
   - FBSnapshotTestCase (~> 2.1.4)
-  - NFASubprojects (from `../../NFASubprojects`)
+  - NFASubprojects
   - Nimble (~> 7.0)
   - Nimble-Snapshots (~> 6.3.0)
   - ProjectDo (from `../`)
-  - ProThirdpart (from `../../ProThirdpart`)
+  - ProThirdpart
   - Quick (~> 1.2.0)
-  - STRIAPManagerUtils (from `../../STRIAPManagerUtils`)
-  - SwiftProjects (from `../../SwiftProjects`)
+  - STRIAPManagerUtils
+  - SwiftProjects
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - AutoData
     - AutoModel
     - FBSnapshotTestCase
     - MBProgressHUD
     - NFAFile
     - NFANetwork
     - NFASQLiteDB
+    - NFASubprojects
     - NFATipsUI
     - NFAToolkit
     - Nimble
     - Nimble-Snapshots
+    - ProThirdpart
     - Quick
     - SDWebImage
     - SnapKit
+    - STRIAPManagerUtils
+    - SwiftProjects
 
 EXTERNAL SOURCES:
-  AutoData:
-    :path: "../../AutoData"
-  NFASubprojects:
-    :path: "../../NFASubprojects"
   ProjectDo:
     :path: "../"
-  ProThirdpart:
-    :path: "../../ProThirdpart"
-  STRIAPManagerUtils:
-    :path: "../../STRIAPManagerUtils"
-  SwiftProjects:
-    :path: "../../SwiftProjects"
 
 SPEC CHECKSUMS:
-  AutoData: c4883138e09432f93ef997832b1c4daf48dd9bfc
-  AutoModel: 81dab3d483f3c5dee35cc9e6f897f656828c806b
+  AutoData: fac6906d9125fe85f4214cea6f86b4d7fd8bd2ce
+  AutoModel: cbd219be08706a516db246fa3937d3209221637c
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  NFAFile: 3e2d3e7a314cc5f9f862d8a659c575a9ef0d507f
-  NFANetwork: 353ebc5cceb5f59d6147aee02a93ae97a754f965
-  NFASQLiteDB: cd375370d3c3549c1df2323dc4008678fb869d3d
-  NFASubprojects: 5377e36c37b59f53df430f72d752c77ff9e48d4d
-  NFATipsUI: 99c25cb52c810ccdba9afee64bebdba6793bdc34
-  NFAToolkit: 92b11f5c75c267ae3ce6e316073c4d5e6b8407e9
+  NFAFile: 780e49c1db036e6bb400d3caba36d11b948d6766
+  NFANetwork: e35e23dabcd371e57ea9b09330f139a88ed42cc7
+  NFASQLiteDB: 7f764cd43889ee06bbaf3d79d4fbb1a575eebfd0
+  NFASubprojects: 6e598b625a7ef5a347ab85f95af76b7f49df03c3
+  NFATipsUI: 7d996b3db35d89eaa16b98d8f8b124d2314648dd
+  NFAToolkit: 71585955a80b8d7b820939e6e256ace92c998120
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
-  ProjectDo: 178497c73fc4c44374150847aa7bf0922ee2022e
-  ProThirdpart: 690e40dfb096662813e9d7ba548bc9dadca3d169
+  ProjectDo: 6d3ae7edf35ac352a550448196734b0a12e50d26
+  ProThirdpart: b8c0e10da0d173ab624cab9fdef4acf98c887793
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  STRIAPManagerUtils: c6d9210752e1bd477c79c545276aa568360998a1
-  SwiftProjects: 6a362dfbab5c7742d59e03619483333233d43626
+  STRIAPManagerUtils: 799f0b633e8782f7da0dfdd3b54d9e0cce569995
+  SwiftProjects: b0cc2ef76b489b96d13f4e8e4b8fab4312a5ad0a
 
-PODFILE CHECKSUM: e05037248cc3d8d1711431583970d95dedf73cf3
+PODFILE CHECKSUM: 73217fe940cb378f1fc2e331ac8b6503c6f61f26
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
