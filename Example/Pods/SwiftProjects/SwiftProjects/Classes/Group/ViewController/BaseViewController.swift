@@ -36,6 +36,34 @@ open class BaseViewController: UIViewController , IDataPost {
         return self.view.getSubview(autoViewClass: autoViewClass, index: index, autoInit: autoInit)
     }
     
+    public func getSubImageView(index : Int) -> UIImageView?{
+        return self.getNomerView(autoViewClass: .imageView, index: index)
+    }
+    
+    public func getSubLabelView(index : Int) -> UILabel?{
+        return self.getNomerView(autoViewClass: .label, index: index)
+    }
+    
+    public func getSubButton(index : Int) -> UIButton?{
+        return self.getNomerView(autoViewClass: .button, index: index)
+    }
+    
+    public lazy var backImgBtn: UIButton = {
+          //设置返回按钮属性
+          let backBtn = UIButton(type: UIButton.ButtonType.custom)
+          
+          backBtn.setImage(UIImage(named: "bottom_getback"), for: UIControl.State())
+          backBtn.setImage(UIImage(named: "bottom_getback"), for: .highlighted)
+          backBtn.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+          backBtn.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
+          backBtn.contentEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+          backBtn.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+          let btnW: CGFloat = AppWidth > 375.0 ? 60 : 54
+          backBtn.frame = CGRect(x: 0, y: 0, width: btnW, height: 40)
+          return backBtn
+      }()
+
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,7 +71,7 @@ open class BaseViewController: UIViewController , IDataPost {
         print("当前类:\(self.classForCoder)")
         #endif
         initializeView()
-        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backImgBtn)
         // Do any additional setup after loading the view.
     }
     
@@ -116,7 +144,7 @@ open class BaseViewController: UIViewController , IDataPost {
     private var blankImage: CustImageView?
     private var blankLabel: UILabel?
       
-      open func showBlankDataTip(_ message : String = "暂无数据" , tipsImage : String , topConstant : CGFloat = AppHeight * 0.3, addInTheView : UIView , cb : @escaping CB) {
+    open func showBlankDataTip(_ message : String = "暂无数据" , tipsImage : String , topConstant : CGFloat = AppHeight * 0.3 , isNoWifi : Bool = false , addInTheView : UIView , cb : @escaping CB) {
          if blankImage?.superview != nil {
              return
          }
@@ -125,7 +153,14 @@ open class BaseViewController: UIViewController , IDataPost {
          let imageTop = NSLayoutConstraint(item: blankImage!, attribute: .top, relatedBy: .equal, toItem: addInTheView, attribute: .top, multiplier: 1, constant:topConstant)
          let imageCenterX = NSLayoutConstraint(item: blankImage!, attribute: .centerX, relatedBy: .equal, toItem: addInTheView, attribute: .centerX, multiplier: 1, constant: 0)
          addInTheView.addSubview(blankImage!)
-         addInTheView.addConstraints([imageTop, imageCenterX])
+        if isNoWifi {
+            let imageW = NSLayoutConstraint(item: blankImage!, attribute: .width, relatedBy: .equal, toItem: addInTheView, attribute: .width, multiplier: 0.4, constant: 0)
+                   let imageH = NSLayoutConstraint(item: blankImage!, attribute: .height, relatedBy: .equal, toItem: addInTheView, attribute: .width, multiplier: 0.4*530/345, constant: 0)
+                    addInTheView.addConstraints([imageTop, imageCenterX, imageW,imageH])
+        }else{
+            addInTheView.addConstraints([imageTop, imageCenterX])
+        }
+       
          blankLabel = UILabel()
          blankLabel!.textColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
          blankLabel!.translatesAutoresizingMaskIntoConstraints = false
@@ -137,7 +172,7 @@ open class BaseViewController: UIViewController , IDataPost {
          let dataTop = NSLayoutConstraint(item: blankLabel!, attribute: .top, relatedBy: .equal, toItem: blankImage, attribute: .bottom, multiplier: 1, constant: 10)
          let dataCenterX = NSLayoutConstraint(item: blankLabel!, attribute: .centerX, relatedBy: .equal, toItem: blankImage, attribute: .centerX, multiplier: 1, constant: 0)
          addInTheView.addConstraints([dataTop, dataCenterX])
-      }
+    }
 
       open func hiddenBlankDataTip() {
          blankImage?.removeFromSuperview()

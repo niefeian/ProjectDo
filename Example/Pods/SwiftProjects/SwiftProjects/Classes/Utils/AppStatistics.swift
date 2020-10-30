@@ -72,7 +72,11 @@ public class AppStatistics: NSObject {
                     self.runTime()
             })
         }
-       timeBlock?()
+        if openRunTimer
+        {
+           timeBlock?()
+        }
+       
     }
     
     @objc func  willEnterForegroundNotification(){

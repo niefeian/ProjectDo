@@ -1,5 +1,5 @@
 PODS:
-  - AutoData (0.1.4):
+  - AutoData (0.1.8):
     - AutoModel
     - NFANetwork
     - NFASQLiteDB
@@ -12,7 +12,7 @@ PODS:
     - FBSnapshotTestCase/Core
   - MBProgressHUD (1.2.0)
   - NFAFile (0.1.1)
-  - NFANetwork (0.0.8)
+  - NFANetwork (0.0.10)
   - NFASQLiteDB (0.0.2)
   - NFASubprojects (0.0.1):
     - NFATipsUI
@@ -28,7 +28,7 @@ PODS:
   - Nimble-Snapshots/Core (6.3.0):
     - FBSnapshotTestCase (~> 2.0)
     - Nimble (~> 7.0)
-  - ProjectDo (0.1.1):
+  - ProjectDo (0.1.2):
     - AutoData
     - NFASubprojects
     - ProThirdpart
@@ -42,8 +42,8 @@ PODS:
     - SDWebImage/Core (= 5.5.2)
   - SDWebImage/Core (5.5.2)
   - SnapKit (4.2.0)
-  - STRIAPManagerUtils (0.2.7)
-  - SwiftProjects (0.0.21):
+  - STRIAPManagerUtils (0.2.9)
+  - SwiftProjects (0.0.22):
     - NFAFile
     - NFATipsUI
     - NFAToolkit
@@ -86,25 +86,25 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AutoData: fac6906d9125fe85f4214cea6f86b4d7fd8bd2ce
+  AutoData: 45d082df34c7884b8fb926163222faea5112592c
   AutoModel: cbd219be08706a516db246fa3937d3209221637c
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   NFAFile: 780e49c1db036e6bb400d3caba36d11b948d6766
-  NFANetwork: e35e23dabcd371e57ea9b09330f139a88ed42cc7
+  NFANetwork: ddfc0d347bdba03176da67874cb7c679a86f8273
   NFASQLiteDB: 7f764cd43889ee06bbaf3d79d4fbb1a575eebfd0
   NFASubprojects: 6e598b625a7ef5a347ab85f95af76b7f49df03c3
   NFATipsUI: 7d996b3db35d89eaa16b98d8f8b124d2314648dd
   NFAToolkit: 71585955a80b8d7b820939e6e256ace92c998120
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
-  ProjectDo: 6d3ae7edf35ac352a550448196734b0a12e50d26
+  ProjectDo: ec6bc3315f53988682b5d9873c5dd32132d5810f
   ProThirdpart: b8c0e10da0d173ab624cab9fdef4acf98c887793
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  STRIAPManagerUtils: 799f0b633e8782f7da0dfdd3b54d9e0cce569995
-  SwiftProjects: b0cc2ef76b489b96d13f4e8e4b8fab4312a5ad0a
+  STRIAPManagerUtils: d8b0fa969c117573abc610725d1eecbb1e7113bc
+  SwiftProjects: 14c6e9ca25aa9fa31fab272c2b2176431e8be519
 
 PODFILE CHECKSUM: 73217fe940cb378f1fc2e331ac8b6503c6f61f26
 

@@ -20,13 +20,14 @@ open class CusAutoTableViewCell: CusTableViewCell {
     
 
     open override func initializePage(){
+//        self.contentView.isHidden = true
         if subViewsData.count == 0 {
             return
         }
         for viewsData in subViewsData{
             let viewClass = viewsData.0
             for index in 0 ..< viewsData.1 {
-                addSubview(autoViewClass: viewClass, index: index + 1)
+                self.contentView.addSubview(autoViewClass: viewClass, index: index + 1)
             }
         }
     }

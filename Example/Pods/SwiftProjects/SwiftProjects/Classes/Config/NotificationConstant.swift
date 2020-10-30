@@ -10,6 +10,7 @@ import UIKit
 public let UserChangedNotification = NSNotification.Name("UserChangedNotification")
 public let MessageNotification = NSNotification.Name("MessageNotification")
 public let ReloadWebNotification = NSNotification.Name("ReloadWebNotification")
+public let AppPaySucces = NSNotification.Name("AppPaySucces")
 
 //绑定信息
 public let UserBinNotification = NSNotification.Name("UserBinNotification")

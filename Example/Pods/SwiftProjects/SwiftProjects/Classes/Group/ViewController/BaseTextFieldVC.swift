@@ -114,7 +114,6 @@ extension BaseTextFieldVC : UIGestureRecognizerDelegate{
                 }
             }
         }
-       
         return false
     }
 }

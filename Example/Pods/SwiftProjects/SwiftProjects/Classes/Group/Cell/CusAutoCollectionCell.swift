@@ -13,7 +13,7 @@ open class CusAutoCollectionCell: CusCollectionViewCell {
     public var subViewsData : [(AutoViewClass , Int)]! = [(AutoViewClass , Int)]()
 
     public func addAutoView(_ subs :[(AutoViewClass , Int)]){
-            subViewsData = subs
+        subViewsData = subs
     }
 
     open override func initializePage(){
@@ -23,7 +23,7 @@ open class CusAutoCollectionCell: CusCollectionViewCell {
         for viewsData in subViewsData{
             let viewClass = viewsData.0
             for index in 0 ..< viewsData.1 {
-                addSubview(autoViewClass: viewClass, index: index + 1)
+                self.contentView.addSubview(autoViewClass: viewClass, index: index + 1)
             }
         }
     }

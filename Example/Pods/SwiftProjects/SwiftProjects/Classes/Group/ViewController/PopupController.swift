@@ -41,7 +41,7 @@ open class PopupController: UIViewController {
             switch self {
             case .top: return CGPoint(x: (size.width - view.frame.width) / 2, y: 0)
             case .center: return CGPoint(x: (size.width - view.frame.width) / 2, y: (size.height - view.frame.height) / 2)
-            case .centerSubNav : return CGPoint(x: (size.width - view.frame.width) / 2, y: (size.height - view.frame.height) / 2 - 64)
+            case .centerSubNav : return CGPoint(x: (size.width - view.frame.width) / 2, y: (size.height - view.frame.height) / 2 - NavigationH)
             case .bottom: return CGPoint(x: (size.width - view.frame.width) / 2, y: size.height - view.frame.height)
             }
         }
@@ -164,6 +164,7 @@ public extension PopupController {
                 self?.dismiss()
             }
         }
+        
     }
     
     func didShowHandler(_ handler: @escaping (PopupController) -> Void) -> PopupController {
