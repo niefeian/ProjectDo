@@ -297,7 +297,6 @@ open class PayUtils: NSObject {
                         model.nowCount = 0
                         self.payQueue[orderId]  = model
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopConstants.Disappear), object: "网络异常，请联系客服")
-                       
                     }
                 }
             }
@@ -330,6 +329,13 @@ open class PayUtils: NSObject {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopConstants.ShowLoding), object: "正在支付")
                         STRIAPManager.shareSIAP().startPurch(withID:purchID,para:paras, tmpid: tmpid, info: "")
                     }
+                    else if let tmpid = ((data as? NSDictionary)?.object(forKey: "data") as? NSDictionary)?.object(forKey: "ohash") as? String
+                    {
+                          self.payQueue[purchID]?.tmpid = tmpid
+                          self.payQueue[purchID]?.payStatus = .正在向苹果发起支付
+                          NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopConstants.ShowLoding), object: "正在支付")
+                          STRIAPManager.shareSIAP().startPurch(withID:purchID,para:paras, tmpid: tmpid, info: "")
+                      }
                 })
                 
             }else{
