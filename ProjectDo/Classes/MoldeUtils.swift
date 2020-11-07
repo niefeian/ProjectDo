@@ -23,12 +23,6 @@ public class PayResult: BaseModel {
     @objc public var url = ""//网址
     @objc public var ohash = ""//唯一标识
     @objc public var type = "" //商品类型
-    
     @objc open var userinfo :  NSDictionary = NSDictionary()//用户信息
 }
-
-//import AutoModel
-//open class Userinfo: BaseModel {
-//    @objc open var memberexpire = ""//是否是会员
-//}
 
